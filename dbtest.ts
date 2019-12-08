@@ -1,22 +1,28 @@
 import { Sequelize } from 'sequelize';
+import { initAttribute } from './src/attribute/attribute';
 
 import { initThing } from './src/thing/thing';
-import { initAttribute } from './src/attribute/attribute';
 
 const sequelize = new Sequelize('sqlite::memory:');
 
-const Thing = initThing(sequelize);
 const Attribute = initAttribute(sequelize);
+const Thing = initThing(sequelize);
 
 sequelize.sync()
     .then(() => Attribute.create({
         name: 'fist attribute',
-        description: 'the first attribute'
+        description: 'the first attribute',
     }))
-    .then((entity) => console.log(entity.toJSON()))
     .then(() => Thing.create({
         name: 'new thing',
         description: 'yeah',
-        attribute: 1
+        attributeId: 1,
     }))
-    .then((entity) => console.log(entity.toJSON()));
+    .then(() => Thing.create({
+        name: 'new thing 2',
+        description: 'new thing with no attribute',
+    }))
+    .then(() => Thing.findAll({
+        include: [{ association: 'attribute' }],
+    }))
+    .then((entity) => console.log(entity.map((val) => val?.toJSON())));

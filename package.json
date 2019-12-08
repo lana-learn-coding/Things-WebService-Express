@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "ts-node bin/www.ts",
-    "db": "node src/db.js"
+    "db": "ts-node dbtest.ts"
   },
   "dependencies": {
     "@types/debug": "^4.1.5",

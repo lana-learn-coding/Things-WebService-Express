@@ -1,12 +1,14 @@
-import { DataTypes, Model, Sequelize } from 'sequelize';
+import {Association, DataTypes, Model, Sequelize} from 'sequelize';
+import {Attribute} from '../attribute/attribute';
 
 export class Thing extends Model {
+    public static associations: {
+        attribute: Association<Thing, Attribute>;
+    };
     public id!: number;
     public name!: string;
     public description!: string;
-    public attribute!: string;
-
-    //timestamp, sequelize auto add this
+    // timestamp, sequelize auto add this
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -16,23 +18,27 @@ export function initThing(sequelize: Sequelize) {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         name: {
-            type: new DataTypes.STRING(128),
-            allowNull: false
+            type: DataTypes.STRING(128),
+            allowNull: false,
         },
         description: {
-            type: new DataTypes.STRING(256),
+            type: DataTypes.STRING(256),
             allowNull: false,
-            defaultValue: ''
+            defaultValue: '',
         },
-        attribute: {
-            type: DataTypes.INTEGER.UNSIGNED
-        }
     }, {
-        sequelize: sequelize,
-        tableName: 'thing'
+        sequelize,
+        tableName: 'thing',
     });
+
+    Thing.belongsTo(Attribute, {
+        foreignKey: 'attributeId',
+        as: 'attribute',
+        targetKey: 'id',
+    });
+
     return Thing;
 }
