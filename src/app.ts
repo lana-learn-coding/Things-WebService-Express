@@ -2,8 +2,8 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import { router as thingRouter } from './src/thing/router';
-import { router as attrRouter } from './src/attribute/router';
+import { router as thingRouter } from './thing/router';
+import { router as attrRouter } from './attribute/router';
 
 const app = express();
 
