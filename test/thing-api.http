@@ -1,0 +1,54 @@
+POST localhost:3000/api/attributes
+Content-Type: application/json
+
+{
+  "name": "liquid",
+  "description": "this is liquid"
+}
+
+###
+GET localhost:3000/api/things
+
+###
+POST localhost:3000/api/things
+Content-Type: application/json
+
+{
+  "name": "water",
+  "description": "this is a water"
+}
+
+###
+GET localhost:3000/api/things/1
+
+###
+PUT localhost:3000/api/things/1
+Content-Type: application/json
+
+{
+  "description": "this is updated water",
+  "attributeId": 1
+}
+
+###
+GET localhost:3000/api/things/1
+
+###
+DELETE localhost:3000/api/things/1
+
+###
+GET localhost:3000/api/things
+
+###
+GET localhost:3000/api/things/100
+
+###
+PUT localhost:3000/api/things/100
+Content-Type: application/json
+
+{}
+
+###
+DELETE localhost:3000/api/things/100
+
+###

@@ -31,12 +31,14 @@ attributeRouter.get('/:id', async (req, res) => {
                 id: req.params.id,
             },
         });
-        res.status(200);
-        res.json(attribute);
-    } else {
-        res.status(404);
-        res.send();
+        if (attribute) {
+            res.status(200);
+            res.json(attribute);
+            return;
+        }
     }
+    res.status(404);
+    res.send();
 });
 
 attributeRouter.put('/:id', async (req, res) => {

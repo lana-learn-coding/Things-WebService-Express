@@ -38,12 +38,14 @@ thingRouter.get('/:id', async (req, res) => {
                 association: 'attribute',
             }],
         });
-        res.status(200);
-        res.json(thing);
-    } else {
-        res.status(404);
-        res.send();
+        if (thing) {
+            res.status(200);
+            res.json(thing);
+            return;
+        }
     }
+    res.status(404);
+    res.send();
 });
 
 thingRouter.put('/:id', async (req, res) => {

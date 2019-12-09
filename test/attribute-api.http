@@ -1,0 +1,44 @@
+GET localhost:3000/api/attributes
+
+###
+POST localhost:3000/api/attributes
+Content-Type: application/json
+
+{
+  "name": "liquid",
+  "description": "this is liquid"
+}
+
+###
+GET localhost:3000/api/attributes/1
+
+###
+PUT localhost:3000/api/attributes/1
+Content-Type: application/json
+
+{
+  "description": "this is updated liquid"
+}
+
+###
+GET localhost:3000/api/attributes/1
+
+###
+DELETE localhost:3000/api/attributes/1
+
+###
+GET localhost:3000/api/attributes
+
+###
+GET localhost:3000/api/attributes/100
+
+###
+PUT localhost:3000/api/attributes/100
+Content-Type: application/json
+
+{}
+
+###
+DELETE localhost:3000/api/attributes/100
+
+###
