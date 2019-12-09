@@ -2,8 +2,8 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import { router as thingRouter } from './thing/router';
-import { router as attrRouter } from './attribute/router';
+import thingRouter from './router/thing';
+import attributeRouter from './router/attribute';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/things', thingRouter);
-app.use('/attributes', attrRouter);
+app.use('/api/things', thingRouter);
+app.use('/api/attributes', attributeRouter);
 
 export default app;

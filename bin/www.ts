@@ -7,8 +7,11 @@
 import app from '../src/app';
 import debugFactory from 'debug';
 import http from 'http';
+import { sequelize } from '../src/model/models';
 
 const debug = debugFactory('express:server');
+sequelize.sync().then(() => debug('Database synced'));
+
 /**
  * Get port from environment and store in Express.
  */
